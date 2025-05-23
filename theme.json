@@ -1,0 +1,38 @@
+{
+  "version": 2,
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "navy-50",
+          "color": "#F0F4F8",
+          "name": "Navy 50"
+        },
+        {
+          "slug": "navy-600",
+          "color": "#486581",
+          "name": "Navy 600"
+        },
+        {
+          "slug": "gold-500",
+          "color": "#EAB308",
+          "name": "Gold 500"
+        }
+      ]
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "Inter, sans-serif",
+          "slug": "inter",
+          "name": "Inter"
+        },
+        {
+          "fontFamily": "Playfair Display, serif",
+          "slug": "playfair",
+          "name": "Playfair Display"
+        }
+      ]
+    }
+  }
+}
