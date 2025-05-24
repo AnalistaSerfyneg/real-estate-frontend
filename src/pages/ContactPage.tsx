@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { FilloutStandardEmbed } from '@fillout/react';
 
 const ContactPage: React.FC = () => {
   useEffect(() => {
@@ -26,17 +27,12 @@ const ContactPage: React.FC = () => {
       
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Embedded Fillout Form */}
+          {/* Embedded Fillout Form using @fillout/react */}
           <div className="bg-white rounded-lg shadow-md p-8">
             <h2 className="text-2xl font-semibold text-navy-900 mb-6">Ponte en Contacto</h2>
-            <div
-              style={{ width: '100%', height: '500px' }}
-              data-fillout-id="jLQuijYVysus"
-              data-fillout-embed-type="standard"
-              data-fillout-inherit-parameters
-              data-fillout-dynamic-resize
-            ></div>
-            <script src="https://server.fillout.com/embed/v1/"></script>
+            <div style={{ width: '100%', height: '500px' }}>
+              <FilloutStandardEmbed filloutId="jLQuijYVysus" />
+            </div>
           </div>
           
           {/* Contact Information */}
