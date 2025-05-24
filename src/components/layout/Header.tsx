@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Search, Phone } from 'lucide-react';
+import { Menu, X, Search, MessageCircle } from 'lucide-react';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -39,7 +39,7 @@ const Header: React.FC = () => {
               isScrolled || !isHomePage ? 'text-navy-900' : 'text-white'
             }`}
           >
-             Inmuebles<span className="text-color-serfy"> Serfyneg</span>
+            Inmuebles<span className="text-color-serfy"> Serfyneg</span>
           </span>
         </Link>
 
@@ -52,9 +52,12 @@ const Header: React.FC = () => {
 
         {/* Acciones desktop */}
         <div className="hidden md:flex items-center space-x-4">
-          <a href="tel:+1234567890" className="flex items-center btn btn-primary">
-            <Phone className="w-4 h-4 mr-2" />
-            <span>(601) 915-9644</span>
+          <a
+            href="https://wa.me/+573507423731"
+            className="flex items-center px-4 py-2 bg-[#25D366] text-white rounded-lg hover:bg-[#20b858] transition-colors duration-300 font-medium"
+          >
+            <MessageCircle className="w-4 h-4 mr-2" />
+            <span>Chatear con nosotros</span>
           </a>
         </div>
 
@@ -89,8 +92,6 @@ const Header: React.FC = () => {
             <Link to="/properties" className="py-3 text-navy-900 border-b border-gray-100" onClick={() => setIsMobileMenuOpen(false)}>
               Propiedades
             </Link>
-        
-          
             <Link to="/contact" className="py-3 text-navy-900" onClick={() => setIsMobileMenuOpen(false)}>
               Contacto
             </Link>
@@ -99,10 +100,14 @@ const Header: React.FC = () => {
                 <Search className="w-4 h-4 mr-2" />
                 Buscar
               </button>
-              <button className="flex-1 btn btn-primary flex items-center justify-center">
-                <Phone className="w-4 h-4 mr-2" />
-                Llamar
-              </button>
+              <a
+                href="https://wa.me/+573507423731"
+                className="flex-1 flex items-center justify-center px-4 py-2 bg-[#25D366] text-white rounded-lg hover:bg-[#20b858] transition-colors duration-300 font-medium"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <MessageCircle className="w-4 h-4 mr-2" />
+                Chatear
+              </a>
             </div>
           </div>
         </div>

@@ -36,7 +36,7 @@ const PrivacyPolicy: React.FC = () => {
           <section className="mb-8">
             <h2 className="text-xl font-semibold text-navy-900 mb-4">1. Introducción</h2>
             <p className="text-gray-700">
-              En Inmuebles Serfyneg ("nosotros", "nuestro"), nos comprometemos a proteger la privacidad de nuestros usuarios. Esta Política de Privacidad describe cómo recopilamos, usamos, compartimos y protegemos la información personal que nos proporcionas a través de nuestro sitio web y servicios relacionados (el "Sitio"). Al usar el Sitio, aceptas las prácticas descritas aquí.
+              En Serfyneg BPO S.A.S ("nosotros", "nuestro"), nos comprometemos a proteger la privacidad de nuestros usuarios. Esta Política de Privacidad describe cómo recopilamos, usamos, compartimos y protegemos la información personal que nos proporcionas a través de nuestro sitio web y servicios relacionados (el "Sitio"). Al usar el Sitio, aceptas las prácticas descritas aquí.
             </p>
           </section>
 
@@ -90,34 +90,48 @@ const PrivacyPolicy: React.FC = () => {
           <section className="mb-8">
             <h2 className="text-xl font-semibold text-navy-900 mb-4">7. Tus derechos</h2>
             <p className="text-gray-700">
-              Tienes derechos sobre tus datos, como acceder, corregir o eliminar tu información personal, oponerte al procesamiento, o retirar tu consentimiento para marketing. Contáctanos en [correo de contacto, ej., soporte@serfyneg.com].
+              Tienes derechos sobre tus datos, como acceder, corregir o eliminar tu información personal, oponerte al procesamiento, o retirar tu consentimiento para marketing. Contáctanos en soporte@serfyneg.com.
             </p>
           </section>
 
+
           <section className="mb-8">
-            <h2 className="text-xl font-semibold text-navy-900 mb-4">8. Transferencias internacionales</h2>
+            <h2 className="text-xl font-semibold text-navy-900 mb-4">8. Autorización para el Tratamiento de Datos Personales</h2>
             <p className="text-gray-700">
-              Tu información puede transferirse a servidores fuera de Colombia, con estrictas medidas de protección de datos.
+              En cumplimiento de la Ley 1581 de 2012, el Decreto 1377 de 2013 y demás normas concordantes, informamos que los datos personales que usted suministre a través de este sitio serán recolectados, almacenados, usados, circulados y tratados por Serfyneg BPO S.A.S. (NIT 901.736.564-1) y el Fondo Nacional del Ahorro S.A. (NIT 899.999.284-4), en calidad de responsables y/o encargados.
+            </p>
+            <p className="text-gray-700 mt-2">
+              La finalidad del tratamiento de sus datos personales incluye:
+            </p>
+            <ul className="list-disc list-inside text-gray-700 space-y-2">
+              <li>Contactarlo por medios físicos y/o electrónicos para ofrecer productos y servicios relacionados con ahorro, crédito y otros servicios financieros.</li>
+              <li>Enviar información publicitaria, promocional y/o comercial de Serfyneg BPO S.A.S. y el Fondo Nacional del Ahorro S.A.</li>
+              <li>Realizar encuestas de satisfacción, estudios de mercado y análisis estadísticos.</li>
+            </ul>
+            <p className="text-gray-700 mt-2">
+              Usted puede conocer, actualizar, rectificar y suprimir sus datos personales, o revocar la autorización, mediante solicitud a:
+              <br />Serfyneg BPO S.A.S.: servicioalcliente@serfyneg.com
+              <br />Fondo Nacional del Ahorro S.A.: protecciondedatospersonales@fna.gov.co
+              <br />Al usar este sitio, usted declara haber sido informado sobre el tratamiento de sus datos y autoriza expresamente a Serfyneg BPO S.A.S. y al Fondo Nacional del Ahorro S.A. para tratarlos conforme a lo aquí establecido.
             </p>
           </section>
 
-          <section className="mb-8">
+
+          <section>
             <h2 className="text-xl font-semibold text-navy-900 mb-4">9. Cambios a esta política</h2>
             <p className="text-gray-700">
               Podemos actualizar esta Política de Privacidad. Publicaremos los cambios en esta página y, si son significativos, te notificaremos por correo o mediante un aviso en el Sitio.
             </p>
+            <br />
           </section>
+
 
           <section>
             <h2 className="text-xl font-semibold text-navy-900 mb-4">10. Contacto</h2>
             <p className="text-gray-700">
               Si tienes preguntas, contáctanos en:
-              <br />
-              Inmuebles Serfyneg
-              <br />
-              Correo: soporte@serfyneg.com
-              <br />
-              Teléfono: [número de contacto]
+              <br />Correo: servicioalcliente@serfyneg.com
+              <br />Teléfono: [601-915 9644 Ext 3003]
             </p>
           </section>
         </div>

@@ -27,11 +27,11 @@ const ContactPage: React.FC = () => {
       
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Embedded Fillout Form using @fillout/react */}
+          {/* Embedded Fillout Form */}
           <div className="bg-white rounded-lg shadow-md p-8">
             <h2 className="text-2xl font-semibold text-navy-900 mb-6">Ponte en Contacto</h2>
             <div style={{ width: '100%', height: '500px' }}>
-              <FilloutStandardEmbed filloutId="jLQuijYVysus" />
+              <FilloutStandardEmbed filloutId="ipnpFKzFA4us" />
             </div>
           </div>
           
@@ -40,27 +40,17 @@ const ContactPage: React.FC = () => {
             <div className="bg-white rounded-lg shadow-md p-8 mb-8">
               <h2 className="text-2xl font-semibold text-navy-900 mb-6">Información de Contacto</h2>
               <div className="space-y-6">
-                <div className="flex">
-                  <MapPin className="w-6 h-6 text-navy-600 flex-shrink-0 mr-4" />
-                  <div>
-                    <h3 className="font-medium text-navy-900 mb-1">Dirección de la Oficina</h3>
-                    <p className="text-gray-600">
-                      Avenida del Lujo 123<br />
-                      Nueva York, NY 10001<br />
-                      Estados Unidos
-                    </p>
-                  </div>
-                </div>
+                
                 
                 <div className="flex">
                   <Phone className="w-6 h-6 text-navy-600 flex-shrink-0 mr-4" />
                   <div>
                     <h3 className="font-medium text-navy-900 mb-1">Números de Teléfono</h3>
                     <p className="text-gray-600 mb-1">
-                      Principal: <a href="tel:+12345678900" className="hover:text-navy-600">(123) 456-7890</a>
+                      Principal: <a href="tel:+12345678900" className="hover:text-navy-600">(601) 915-9644</a>
                     </p>
                     <p className="text-gray-600">
-                      Fax: <span>(123) 456-7891</span>
+                      Línea 2: <span>(601) 841-8088</span>
                     </p>
                   </div>
                 </div>
@@ -70,10 +60,10 @@ const ContactPage: React.FC = () => {
                   <div>
                     <h3 className="font-medium text-navy-900 mb-1">Correos Electrónicos</h3>
                     <p className="text-gray-600 mb-1">
-                      Consultas Generales: <a href="mailto:info@luxeestate.com" className="hover:text-navy-600">info@luxeestate.com</a>
+                      Consultas Generales: <a href="mailto:info@luxeestate.com" className="hover:text-navy-600">fna@serfyneg.com</a>
                     </p>
                     <p className="text-gray-600">
-                      Soporte: <a href="mailto:support@luxeestate.com" className="hover:text-navy-600">support@luxeestate.com</a>
+                      Soporte: <a href="mailto:support@luxeestate.com" className="hover:text-navy-600">servicioalcliente@serfyneg.com</a>
                     </p>
                   </div>
                 </div>
@@ -86,7 +76,7 @@ const ContactPage: React.FC = () => {
                       Lunes - Viernes: 9:00 a.m. - 6:00 p.m.
                     </p>
                     <p className="text-gray-600 mb-1">
-                      Sábado: 10:00 a.m. - 4:00 p.m.
+                      Sábado: 9:00 a.m. - 12:00 p.m.
                     </p>
                     <p className="text-gray-600">
                       Domingo: Cerrado

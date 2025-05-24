@@ -43,6 +43,22 @@ const PropertyDetails: React.FC = () => {
     return () => clearInterval(interval);
   }, [property, isAutoPlaying]);
   
+  // Cargar el script de Fillout dinámicamente
+  useEffect(() => {
+    // Crear el elemento script
+    const script = document.createElement('script');
+    script.src = 'https://server.fillout.com/embed/v1/';
+    script.async = true;
+
+    // Añadir el script al documento
+    document.body.appendChild(script);
+
+    // Limpiar el script cuando el componente se desmonte
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+  
   // If property not found
   if (!property) {
     return (
@@ -137,9 +153,9 @@ const PropertyDetails: React.FC = () => {
       </div>
       
       <div className="container mx-auto px-8 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-1 gap-2">
+        <div className="grid grid-cols-1 lg:grid-cols-1 gap-8">
           {/* Main Content */}
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-1">
             {/* Image Gallery */}
             <div className="bg-white rounded-lg shadow-md overflow-hidden mb-8">
               <div className="relative h-[600px]">
@@ -266,8 +282,6 @@ const PropertyDetails: React.FC = () => {
               </div>
             </div>
           </div>
-          
-          {/* Sidebar */}
         </div>
         
         {/* Similar Properties */}
@@ -282,6 +296,19 @@ const PropertyDetails: React.FC = () => {
           </div>
         )}
       </div>
+
+      {/* Fillout Slider Form */}
+      <div
+        data-fillout-id="ipnpFKzFA4us"
+        data-fillout-embed-type="slider"
+        data-fillout-button-text="Enviar Solicitud"
+        data-fillout-button-color="#396FC9"
+        data-fillout-button-size="large"
+        data-fillout-button-float="bottom-right"
+        data-fillout-slider-direction="right"
+        data-fillout-inherit-parameters
+        data-fillout-popup-size="medium"
+      ></div>
     </div>
   );
 };
