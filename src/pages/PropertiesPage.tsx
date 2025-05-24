@@ -188,13 +188,11 @@ const PropertiesPage: React.FC = () => {
                   onChange={handleFilterChange}
                   className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-navy-400"
                 >
-                  <option value="">Cualquier Tipo</option>
-                  <option value="Villa">Villa</option>
-                  <option value="Penthouse">Penthouse</option>
-                  <option value="Finca">Finca</option>
-                  <option value="Condominio">Condominio</option>
-                  <option value="Casa Adosada">Casa Adosada</option>
-                  <option value="Chalet">Chalet</option>
+                  <option value="">CUALQUIER TIPO</option>
+                  <option value="CASA">CASA</option>
+                  <option value="LOTE">LOTE</option>
+                  <option value="APARTAMENTO">APARTAMENTO</option>
+                 
                 </select>
               </div>
               
@@ -210,11 +208,10 @@ const PropertiesPage: React.FC = () => {
                   className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-navy-400"
                 >
                   <option value="">Sin Mínimo</option>
-                  <option value="1000000">$1.000.000</option>
-                  <option value="2000000">$2.000.000</option>
-                  <option value="3000000">$3.000.000</option>
-                  <option value="4000000">$4.000.000</option>
-                  <option value="5000000">$5.000.000</option>
+                  <option value="100000000">$100.000.000</option>
+                  <option value="150000000">$150.000.000</option>
+                  <option value="172000000">$172.000.000</option>
+              
                 </select>
               </div>
               
@@ -230,11 +227,11 @@ const PropertiesPage: React.FC = () => {
                   className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-navy-400"
                 >
                   <option value="">Sin Máximo</option>
-                  <option value="2000000">$2.000.000</option>
-                  <option value="3000000">$3.000.000</option>
-                  <option value="4000000">$4.000.000</option>
-                  <option value="5000000">$5.000.000</option>
-                  <option value="10000000">$10.000.000</option>
+                  <option value="200000000">$200.000.000</option>
+                  <option value="273000000">$273.000.000</option>
+                  <option value="300000000">$300.000.000</option>
+                  <option value="500000000">$500.000.000</option>
+                  <option value="2400000000">$2.400.000.000</option>
                 </select>
               </div>
               
@@ -250,11 +247,9 @@ const PropertiesPage: React.FC = () => {
                   className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-navy-400"
                 >
                   <option value="">Cualquiera</option>
-                  <option value="1">1+</option>
-                  <option value="2">2+</option>
-                  <option value="3">3+</option>
-                  <option value="4">4+</option>
-                  <option value="5">5+</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>      
                 </select>
               </div>
               
@@ -270,11 +265,10 @@ const PropertiesPage: React.FC = () => {
                   className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-navy-400"
                 >
                   <option value="">Cualquiera</option>
-                  <option value="1">1+</option>
-                  <option value="2">2+</option>
-                  <option value="3">3+</option>
-                  <option value="4">4+</option>
-                  <option value="5">5+</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
                 </select>
               </div>
               

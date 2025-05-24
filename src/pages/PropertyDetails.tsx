@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { MapPin, Bed, Bath, Square, ArrowLeft, Check, ChevronLeft, ChevronRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import properties from '../data/properties';
 import PropertyCard from '../components/properties/PropertyCard';
 
@@ -8,58 +9,39 @@ const PropertyDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [activeImage, setActiveImage] = useState(0);
   const [showAllFeatures, setShowAllFeatures] = useState(false);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true); // Estado para controlar el autoplay
-  
-  // Find the property with matching id
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+
   const property = properties.find(p => p.id === id);
-  
-  // Find similar properties (same city or property type)
   const similarProperties = properties
     .filter(p => p.id !== id && (p.city === property?.city || p.propertyType === property?.propertyType))
     .slice(0, 3);
-  
+
   useEffect(() => {
-    // Update document title
     if (property) {
       document.title = `${property.title} | Inmuebles Serfyneg`;
     }
-    
-    // Scroll to top on page load
     window.scrollTo(0, 0);
-    
-    // Reset active image when property changes
     setActiveImage(0);
   }, [property]);
-  
-  // Autoplay effect for changing images every 6 seconds
+
   useEffect(() => {
     if (!property || !isAutoPlaying) return;
-
     const interval = setInterval(() => {
       setActiveImage(prev => (prev === property.images.length - 1 ? 0 : prev + 1));
-    }, 6000); // 6000 ms = 6 segundos
-
-    // Limpiar el intervalo cuando el componente se desmonte o cambie la propiedad
+    }, 6000);
     return () => clearInterval(interval);
   }, [property, isAutoPlaying]);
-  
-  // Cargar el script de Fillout dinámicamente
+
   useEffect(() => {
-    // Crear el elemento script
     const script = document.createElement('script');
     script.src = 'https://server.fillout.com/embed/v1/';
     script.async = true;
-
-    // Añadir el script al documento
     document.body.appendChild(script);
-
-    // Limpiar el script cuando el componente se desmonte
     return () => {
       document.body.removeChild(script);
     };
   }, []);
-  
-  // If property not found
+
   if (!property) {
     return (
       <div className="pt-20 py-16 text-center">
@@ -72,225 +54,245 @@ const PropertyDetails: React.FC = () => {
       </div>
     );
   }
-  
-  // Format price with commas
+
   const formatPrice = (price: number) => {
-    return `$${price.toLocaleString('es-CO')}`; // Formato para moneda en español (Colombia)
+    return `$${price.toLocaleString('es-CO')}`;
   };
 
-  // Handle navigation for previous and next images
   const handlePrevImage = () => {
-    setIsAutoPlaying(false); // Detener autoplay al interactuar manualmente
+    setIsAutoPlaying(false);
     setActiveImage(prev => (prev === 0 ? property.images.length - 1 : prev - 1));
   };
 
   const handleNextImage = () => {
-    setIsAutoPlaying(false); // Detener autoplay al interactuar manualmente
+    setIsAutoPlaying(false);
     setActiveImage(prev => (prev === property.images.length - 1 ? 0 : prev + 1));
   };
 
-  // Handle thumbnail click
   const handleThumbnailClick = (index: number) => {
-    setIsAutoPlaying(false); // Detener autoplay al interactuar manualmente
+    setIsAutoPlaying(false);
     setActiveImage(index);
   };
-  
+
+  // Animaciones con Framer Motion
+  const slideVariants = {
+    enter: { opacity: 0, x: 50 },
+    center: { opacity: 1, x: 0, transition: { duration: 0.3 } },
+    exit: { opacity: 0, x: -50, transition: { duration: 0.3 } },
+  };
+
+  const contentVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.1, staggerChildren: 0.2 } },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 10 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
+
   return (
     <div className="pt-20 bg-gray-50 pb-16">
       {/* Property Navigation */}
-      <div className="bg-white border-b border-gray-200">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex justify-between items-center">
-            <Link to="/properties" className="flex items-center text-navy-600 hover:text-navy-800">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Volver a Propiedades
-            </Link>
-            <div className="flex space-x-4">
-              
-            </div>
-          </div>
+      <div className="bg-navy-900 text-white">
+        <div className="container mx-auto px-4 py-3">
+          <Link to="/properties" className="flex items-center text-gold-200 hover:text-gold-400 transition-colors">
+            <ArrowLeft className="w-5 h-5 mr-2" />
+            Volver a Propiedades
+          </Link>
         </div>
       </div>
-      
+
+      {/* Image Gallery */}
+      <div className="relative h-[70vh] mb-4 bg-black">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeImage}
+            className="absolute inset-0 w-full h-full"
+            variants={slideVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+          >
+            <img
+              src={property.images[activeImage]}
+              alt={`${property.title} - Imagen ${activeImage + 1}`}
+              className="w-full h-full object-cover rounded-b-lg"
+            />
+            {/* Overlay mínimo para controles */}
+            <div className="absolute inset-0 bg-black/10" />
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Navigation Controls */}
+        <button
+          onClick={handlePrevImage}
+          className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/30 text-white p-3 rounded-full hover:bg-white/50 transition-all focus:outline-none"
+          aria-label="Imagen anterior"
+        >
+          <ChevronLeft className="w-6 h-6" />
+        </button>
+        <button
+          onClick={handleNextImage}
+          className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/30 text-white p-3 rounded-full hover:bg-white/50 transition-all focus:outline-none"
+          aria-label="Imagen siguiente"
+        >
+          <ChevronRight className="w-6 h-6" />
+        </button>
+
+        {/* Thumbnails */}
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+          {property.images.map((image, index) => (
+            <div
+              key={index}
+              className={`w-16 h-10 rounded-md overflow-hidden cursor-pointer transition-all ${
+                index === activeImage ? 'ring-2 ring-gold-400' : 'opacity-60 hover:opacity-90'
+              }`}
+              onClick={() => handleThumbnailClick(index)}
+            >
+              <img src={image} alt={`Miniatura ${index + 1}`} className="w-full h-full object-cover" />
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* Property Header */}
       <div className="bg-white py-6 shadow-sm">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
+          <motion.div
+            className="flex flex-col md:flex-row justify-between items-start md:items-center"
+            initial="hidden"
+            animate="visible"
+            variants={contentVariants}
+          >
             <div>
-              <h1 className="text-2xl md:text-3xl font-bold text-navy-900 mb-2">
+              <motion.h1
+                className="text-3xl md:text-4xl font-playfair font-bold text-navy-900 mb-2"
+                variants={itemVariants}
+              >
                 {property.title}
-              </h1>
-              <div className="flex items-center text-gray-600 mb-2">
-                <MapPin className="w-4 h-4 mr-1" />
+              </motion.h1>
+              <motion.div
+                className="flex items-center text-gray-600 mb-2"
+                variants={itemVariants}
+              >
+                <MapPin className="w-5 h-5 mr-2 text-navy-600" />
                 <span>{property.address}, {property.city}, {property.state} {property.zipCode}</span>
-              </div>
-              <div className="flex flex-wrap gap-2">
+              </motion.div>
+              <motion.div className="flex flex-wrap gap-2" variants={itemVariants}>
                 {property.isFeatured && (
-                  <span className="bg-gold-100 text-gold-700 text-xs font-semibold px-2 py-1 rounded">
+                  <span className="bg-gold-100 text-gold-700 text-xs font-semibold px-2.5 py-1 rounded-full">
                     DESTACADO
                   </span>
                 )}
                 {property.isNewListing && (
-                  <span className="bg-navy-100 text-navy-700 text-xs font-semibold px-2 py-1 rounded">
+                  <span className="bg-navy-100 text-navy-700 text-xs font-semibold px-2.5 py-1 rounded-full">
                     NUEVO LISTADO
                   </span>
                 )}
-                <span className="bg-gray-100 text-gray-700 text-xs font-semibold px-2 py-1 rounded">
-                  {property.propertyType === 'Apartment' ? 'Apartamento' :
-                   property.propertyType === 'House' ? 'Casa' :
-                   property.propertyType === 'Condo' ? 'Condominio' :
-                   property.propertyType} {/* Traduce según los tipos de propiedad */}
+                <span className="bg-gray-100 text-gray-700 text-xs font-semibold px-2.5 py-1 rounded-full">
+                  {property.propertyType}
                 </span>
-              </div>
+              </motion.div>
             </div>
-            <div className="mt-4 md:mt-0">
+            <motion.div className="mt-4 md:mt-0" variants={itemVariants}>
               <div className="text-3xl font-bold text-navy-900">
                 {formatPrice(property.price)}
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
-      
-      <div className="container mx-auto px-8 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-1 gap-8">
-          {/* Main Content */}
-          <div className="lg:col-span-1">
-            {/* Image Gallery */}
-            <div className="bg-white rounded-lg shadow-md overflow-hidden mb-8">
-              <div className="relative h-[600px]">
-                {property.images.map((image, index) => (
-                  <img
-                    key={index}
-                    src={image}
-                    alt={`${property.title} - Imagen ${index + 1}`}
-                    className="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ease-in-out"
-                    style={{ opacity: index === activeImage ? 1 : 0 }}
-                  />
-                ))}
-                {/* Controles de navegación */}
-                <button
-                  onClick={handlePrevImage}
-                  className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-navy-600 text-white p-2 rounded-full hover:bg-navy-800 transition-colors focus:outline-none"
-                  aria-label="Imagen anterior"
-                >
-                  <ChevronLeft className="w-6 h-6" />
-                </button>
-                <button
-                  onClick={handleNextImage}
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-navy-600 text-white p-2 rounded-full hover:bg-navy-800 transition-colors focus:outline-none"
-                  aria-label="Imagen siguiente"
-                >
-                  <ChevronRight className="w-6 h-6" />
-                </button>
-              </div>
-              <div className="p-4 flex space-x-2 overflow-x-auto">
-                {property.images.map((image, index) => (
-                  <div
-                    key={index}
-                    className={`flex-shrink-0 w-40 h-30 cursor-pointer ${
-                      index === activeImage ? 'ring-2 ring-navy-600' : 'opacity-70'
-                    }`}
-                    onClick={() => handleThumbnailClick(index)}
-                  >
-                    <img
-                      src={image}
-                      alt={`Miniatura ${index + 1}`}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                ))}
-              </div>
+
+      <div className="container mx-auto px-4 py-8">
+        {/* Property Details */}
+        <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
+          <h2 className="text-2xl font-playfair font-semibold text-navy-900 mb-6">Detalles de la Propiedad</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-6">
+            <div className="flex flex-col items-center p-4 bg-gradient-to-br from-navy-50 to-navy-100 rounded-lg shadow-sm">
+              <Bed className="w-8 h-8 text-navy-600 mb-2" />
+              <span className="font-bold text-navy-900 text-lg">{property.bedrooms}</span>
+              <span className="text-sm text-gray-600">Habitaciones</span>
             </div>
-            
-            {/* Property Details */}
-            <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-              <h2 className="text-xl font-semibold text-navy-900 mb-4">Detalles de la Propiedad</h2>
-              <div className="flex justify-center gap-8 mb-6">
-                <div className="flex flex-col items-center p-4 bg-gray-50 rounded-lg">
-                  <Bed className="w-6 h-6 text-navy-600 mb-2" />
-                  <span className="font-bold text-navy-900">{property.bedrooms}</span>
-                  <span className="text-sm text-gray-600">Habitaciones</span>
-                </div>
-                <div className="flex flex-col items-center p-4 bg-gray-50 rounded-lg">
-                  <Bath className="w-6 h-6 text-navy-600 mb-2" />
-                  <span className="font-bold text-navy-900">{property.bathrooms}</span>
-                  <span className="text-sm text-gray-600">Baños</span>
-                </div>
-                <div className="flex flex-col items-center p-4 bg-gray-50 rounded-lg">
-                  <Square className="w-6 h-6 text-navy-600 mb-2" />
-                  <span className="font-bold text-navy-900">
-                    {(property.squareFeet / 10.764).toFixed(0)}
-                  </span>
-                  <span className="text-sm text-gray-600">Metros Cuadrados</span>
-                </div>
-              </div>
-              <p className="text-gray-700 mb-6">
-                {property.description}
-              </p>
-              <div className="border-t border-gray-100 pt-6">
-                <h3 className="text-lg font-semibold text-navy-900 mb-4">Características de la Propiedad</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                  {(showAllFeatures ? property.features : property.features.slice(0, 6)).map((feature, index) => (
-                    <div key={index} className="flex items-center">
-                      <Check className="w-5 h-5 text-navy-600 mr-2" />
-                      <span>{feature}</span>
-                    </div>
-                  ))}
-                </div>
-                {property.features.length > 6 && (
-                  <button
-                    onClick={() => setShowAllFeatures(!showAllFeatures)}
-                    className="mt-4 text-navy-600 hover:text-navy-800 font-medium"
-                  >
-                    {showAllFeatures ? 'Mostrar Menos' : 'Mostrar Todas las Características'}
-                  </button>
-                )}
-              </div>
+            <div className="flex flex-col items-center p-4 bg-gradient-to-br from-navy-50 to-navy-100 rounded-lg shadow-sm">
+              <Bath className="w-8 h-8 text-navy-600 mb-2" />
+              <span className="font-bold text-navy-900 text-lg">{property.bathrooms}</span>
+              <span className="text-sm text-gray-600">Baños</span>
             </div>
-            
-            {/* Location */}
-            <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-              <h2 className="text-xl font-semibold text-navy-900 mb-4">Ubicación</h2>
-              <div className="aspect-w-16 aspect-h-9 mb-4">
-                {property.mapIframe ? (
-                  <iframe
-                    src={property.mapIframe.match(/src="([^"]+)"/)?.[1]} // Extrae el valor de src del HTML
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title={`Ubicación de ${property.title}`}
-                    className="w-full h-full rounded-lg"
-                  />
-                ) : (
-                  <div className="w-full h-64 bg-gray-200 rounded-lg">
-                    <div className="flex items-center justify-center h-full">
-                      <MapPin className="w-8 h-8 text-navy-600 mr-2" />
-                      <span className="text-gray-600">Vista de Mapa No Disponible</span>
-                    </div>
-                  </div>
-                )}
-              </div>
-              <div className="flex items-start">
-                <MapPin className="w-5 h-5 text-navy-600 mt-0.5 mr-2" />
-                <span className="text-gray-700">
-                  {property.address}, {property.city}, {property.state} {property.zipCode}
-                </span>
-              </div>
+            <div className="flex flex-col items-center p-4 bg-gradient-to-br from-navy-50 to-navy-100 rounded-lg shadow-sm">
+              <Square className="w-8 h-8 text-navy-600 mb-2" />
+              <span className="font-bold text-navy-900 text-lg">{(property.squareFeet / 1).toFixed(0)}</span>
+              <span className="text-sm text-gray-600">Metros Cuadrados</span>
             </div>
           </div>
+          <p className="text-gray-700 mb-6 font-inter leading-relaxed">{property.description}</p>
+          <div className="border-t border-gray-100 pt-6">
+            <h3 className="text-lg font-playfair font-semibold text-navy-900 mb-4">Características de la Propiedad</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              {(showAllFeatures ? property.features : property.features.slice(0, 6)).map((feature, index) => (
+                <div key={index} className="flex items-center">
+                  <Check className="w-5 h-5 text-gold-500 mr-2" />
+                  <span className="text-gray-700">{feature}</span>
+                </div>
+              ))}
+            </div>
+            {property.features.length > 6 && (
+              <button
+                onClick={() => setShowAllFeatures(!showAllFeatures)}
+                className="mt-4 text-gold-600 hover:text-gold-800 font-medium transition-colors"
+              >
+                {showAllFeatures ? 'Mostrar Menos' : 'Mostrar Todas las Características'}
+              </button>
+            )}
+          </div>
         </div>
-        
+
+        {/* Location */}
+        <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
+          <h2 className="text-2xl font-playfair font-semibold text-navy-900 mb-6">Ubicación</h2>
+          <div className="relative rounded-lg overflow-hidden mb-4 shadow-md">
+            {property.mapIframe ? (
+              <iframe
+                src={property.mapIframe.match(/src="([^"]+)"/)?.[1]}
+                width="100%"
+                height="400"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title={`Ubicación de ${property.title}`}
+                className="w-full h-full"
+              />
+            ) : (
+              <div className="w-full h-64 bg-gray-200 rounded-lg">
+                <div className="flex items-center justify-center h-full">
+                  <MapPin className="w-8 h-8 text-navy-600 mr-2" />
+                  <span className="text-gray-600">Vista de Mapa No Disponible</span>
+                </div>
+              </div>
+            )}
+          </div>
+          <div className="flex items-start">
+            <MapPin className="w-5 h-5 text-navy-600 mt-0.5 mr-2" />
+            <span className="text-gray-700">
+              {property.address}, {property.city}, {property.state} {property.zipCode}
+            </span>
+          </div>
+        </div>
+
         {/* Similar Properties */}
         {similarProperties.length > 0 && (
-          <div className="mt-8">
-            <h2 className="text-2xl font-semibold text-navy-900 mb-6">Propiedades Similares</h2>
+          <div className="mt-12">
+            <h2 className="text-2xl font-playfair font-semibold text-navy-900 mb-6">Propiedades Similares</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {similarProperties.map((property) => (
-                <PropertyCard key={property.id} property={property} />
+                <motion.div
+                  key={property.id}
+                  whileHover={{ y: -5, transition: { duration: 0.3 } }}
+                  className="transform transition-all"
+                >
+                  <PropertyCard property={property} />
+                </motion.div>
               ))}
             </div>
           </div>

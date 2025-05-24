@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { Phone, Mail, Clock } from 'lucide-react';
 import { FilloutStandardEmbed } from '@fillout/react';
 
 const ContactPage: React.FC = () => {
@@ -47,10 +47,10 @@ const ContactPage: React.FC = () => {
                   <div>
                     <h3 className="font-medium text-navy-900 mb-1">Números de Teléfono</h3>
                     <p className="text-gray-600 mb-1">
-                      Principal: <a href="tel:+12345678900" className="hover:text-navy-600">(601) 915-9644</a>
+                      Principal: <a href="tel:+12345678900" className="hover:text-navy-600">(601) 915-9644 EXT 3003</a>
                     </p>
                     <p className="text-gray-600">
-                      Línea 2: <span>(601) 841-8088</span>
+                      Línea 2: <span>(601) 841-8088 OPCIÓN 1</span>
                     </p>
                   </div>
                 </div>
