@@ -20,17 +20,17 @@ const HeroSection: React.FC = () => {
             ¡Encuentra tu inmueble ideal!
           </h1>
           <p className="text-xl text-gray-200 mb-8">
-            Explora nuestra exclusiva variedad de propiedades, desde lotes urbanos hasta apartamentos accesibles.
+            Descubre oportunidades únicas: lotes, casas y apartamentos a precios accesibles. ¡Tenemos la propiedad perfecta para ti!
           </p>
           
           {/* Quick Stats */}
           <div className="flex flex-wrap gap-4 md:gap-8">
             <div className="bg-white/10 backdrop-blur-sm p-4 rounded-lg">
-              <p className="text-gold-400 font-semibold text-lg">200+</p>
-              <p className="text-white text-sm">Propiedades de Lujo</p>
+              <p className="text-gold-400 font-semibold text-lg">100+</p>
+              <p className="text-white text-sm">Propiedades</p>
             </div>
             <div className="bg-white/10 backdrop-blur-sm p-4 rounded-lg">
-              <p className="text-gold-400 font-semibold text-lg">15+</p>
+              <p className="text-gold-400 font-semibold text-lg">8+</p>
               <p className="text-white text-sm">Años de Experiencia</p>
             </div>
             <div className="bg-white/10 backdrop-blur-sm p-4 rounded-lg">

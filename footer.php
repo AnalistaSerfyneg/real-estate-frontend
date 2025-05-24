@@ -31,7 +31,7 @@
                 <div class="footer-bottom">
                     <p class="copyright">
                         © <?php echo date('Y'); ?> <?php bloginfo('name'); ?>. 
-                        <?php _e('All rights reserved.', 'luxeestate'); ?>
+                        <?php _e('All rights reserved.', 'serfyneg BPO S.A.S'); ?>
                     </p>
                     <?php
                     wp_nav_menu(array(

@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import HeroSection from '../components/home/HeroSection';
 import FeaturedProperties from '../components/home/FeaturedProperties';
 
-import TestimonialsSection from '../components/home/TestimonialsSection';
 
 
 const HomePage: React.FC = () => {
@@ -21,7 +20,7 @@ const HomePage: React.FC = () => {
  
  
 
-      <TestimonialsSection />
+     
     </>
   );
 };

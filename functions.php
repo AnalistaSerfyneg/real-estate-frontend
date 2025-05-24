@@ -16,7 +16,6 @@ function luxeestate_setup() {
     
     // Custom Image Sizes
     add_image_size('property-thumbnail', 800, 600, true);
-    add_image_size('agent-thumbnail', 400, 400, true);
 }
 add_action('after_setup_theme', 'luxeestate_setup');
 
@@ -51,19 +50,7 @@ function luxeestate_register_post_types() {
         'rewrite' => array('slug' => 'properties'),
     ));
     
-    // Agents
-    register_post_type('agent', array(
-        'labels' => array(
-            'name' => __('Agents', 'luxeestate'),
-            'singular_name' => __('Agent', 'luxeestate'),
-        ),
-        'public' => true,
-        'has_archive' => true,
-        'supports' => array('title', 'editor', 'thumbnail'),
-        'menu_icon' => 'dashicons-businessperson',
-        'rewrite' => array('slug' => 'agents'),
-    ));
-}
+  
 add_action('init', 'luxeestate_register_post_types');
 
 // Custom Taxonomies

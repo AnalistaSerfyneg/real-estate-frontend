@@ -11,65 +11,59 @@ export interface Property {
   bathrooms: number;
   squareFeet: number;
   propertyType: string;
-  yearBuilt: number;
   features: string[];
   images: string[];
   isFeatured: boolean;
   isNewListing: boolean;
-  agent: {
-    id: string;
-    name: string;
-    image: string;
-  };
-  latitude: number;
-  longitude: number;
+ 
+
+  mapIframe?: string; // Campo opcional para el iframe
 }
 
 const properties: Property[] = [
   {
-    id: "9",
-    title: "(ID 9)  CONJUNTO CERRADO PALESTINA REAL",
-    price: 423698688,
-    address: "AVENIDA 10 CL 48 INT. 4 INT 2-5A LOTE # 5A MANZANA 2 BR. LA PALESTINA",
-    city: "LOS PATIOS",
-    state: "NORTE DE SANTANDER",
-    zipCode: " ",
-    description: "Stunning waterfront villa with panoramic ocean views, private beach access, and luxury finishes throughout. This magnificent property features an infinity pool, home theater, wine cellar, and spacious outdoor entertainment areas. The gourmet kitchen is equipped with top-of-the-line appliances and custom cabinetry.",
-    bedrooms: 5,
-    bathrooms: 6,
-    squareFeet: 6500,
-    propertyType: "Villa",
-    yearBuilt: 2018,
-    features: [
-      "Sala",
-      "Cocina",
-      "Comedor",
-      "sala",
-      "cocina",
-      "comedor",
-      "baño social",
-      "tres closet",
-      "tres habitaciones",
-      "tres baños privados",
-      "zona de ropas y balcon",
-    ],
-    images: [
-      "https://prod-fillout-oregon-s3.s3.us-west-2.amazonaws.com/orgid-93755/flowpublicid-h72USHfGwsus/1eef7250-ba73-445e-b3ac-3117524033f0-b4414pcA9vMCrMI1S3r8ScEMbx8PwynBWe8eG0APNUzyDdPjG7Y34uRg1O1GdXiuflC9fqT7rdaRTwFoEvuObHz4N3jHjqoZQy0/Imagen-de-WhatsApp-2025-02-07-a-las-21.36.18_64ef2f53.jpg",
-      "https://prod-fillout-oregon-s3.s3.us-west-2.amazonaws.com/orgid-93755/flowpublicid-h72USHfGwsus/3755b97f-604f-446e-858d-62c82e2041b0-zmcmhBYL335LgbBUYO3s17rL6ENiXq2JPTZANlyox7I56C1MxN2nvl8HI89qpuzXuPvzMoKzW4yoIIVkP41vI4O8OjwlGmZmF4H/Imagen-de-WhatsApp-2025-02-07-a-las-21.36.19_a832c05c.jpg",
-      "https://prod-fillout-oregon-s3.s3.us-west-2.amazonaws.com/orgid-93755/flowpublicid-h72USHfGwsus/4fad570a-cc53-4581-a803-c2cdbc48a2f5-xzd4xCT9FsZtfgUl32qWSafO29Wz3sObNmlhFSs8OJFx50sJqUlppIuuD845W4kIExrcOKb4C20Z8jtpbVKl3IROJOwOjlc2psI/Imagen-de-WhatsApp-2025-02-07-a-las-21.37.27_326f3337.jpg",
-      "https://prod-fillout-oregon-s3.s3.us-west-2.amazonaws.com/orgid-93755/flowpublicid-h72USHfGwsus/fd70f9f0-a31f-4099-b461-85398c37e1d5-IZgE4tKzZ6UpFuAL8SHWtzhRj5ZIq3nfsje1hYPG1SYPi0Xrzix8veVS5kbvElKYTJRtYw8ThclmRkYhMyoHuYirEgh2bDmxqDn/Imagen-de-WhatsApp-2025-02-07-a-las-21.36.16_e7541a0b.jpg",
-      "https://prod-fillout-oregon-s3.s3.us-west-2.amazonaws.com/orgid-93755/flowpublicid-h72USHfGwsus/ed5b8c12-1ca2-48e0-bd4f-6bc0a3b272ce-FTDtadeP2i7fvjdoibm6lUH3kF0ufxGsQUxPCfyn7mHuDfqk6obFcNQ26TZlnkAUgHF5v1rDaNkNIaIKbd3uVYC6Z4HXhB3igVd/Imagen-de-WhatsApp-2025-02-07-a-las-21.36.19_b6febf78.jpg"
-    ],
-    isFeatured: true,
-    isNewListing: false,
-    agent: {
-      id: "a1",
-      name: "Sarah Johnson",
-      image: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg"
-    },
-    latitude: 34.0259,
-    longitude: -118.7798
-  },
+  id: "9",
+  title: "(ID 9) CONJUNTO CERRADO PALESTINA REAL",
+  price: 423698688,
+  address: "AVENIDA 10 CL 48 INT. 4 INT 2-5A LOTE # 5A MANZANA 2 BR. LA PALESTINA",
+  city: "LOS PATIOS",
+  state: "NORTE DE SANTANDER",
+  zipCode: " ",
+  description: "Ubicada en el Conjunto Cerrado Palestina Real, en el municipio de Los Patios, Norte de Santander, esta hermosa casa combina comodidad, funcionalidad y un entorno residencial tranquilo. Con una construcción de 190 m², esta propiedad cuenta con 3 habitaciones, 4 baños (incluyendo 3 privados y un baño social), además de espacios amplios como sala, comedor, cocina y una práctica zona de ropas con balcón. La casa también ofrece múltiples armarios (tres closets) y un diseño moderno pensado para la vida familiar. Gracias a su ubicación en conjunto cerrado, disfrutarás de mayor seguridad y privacidad.",
+  bedrooms: 3,
+  bathrooms: 4,
+  squareFeet: 190,
+  propertyType: "CASA",
+  features: [
+    "Sala",
+    "Cocina",
+    "Comedor",
+    "sala",
+    "cocina",
+    "comedor",
+    "baño social",
+    "tres closet",
+    "tres habitaciones",
+    "tres baños privados",
+    "zona de ropas y balcon",
+  ],
+  images: [
+    "https://prod-fillout-oregon-s3.s3.us-west-2.amazonaws.com/orgid-93755/flowpublicid-h72USHfGwsus/1eef7250-ba73-445e-b3ac-3117524033f0-b4414pcA9vMCrMI1S3r8ScEMbx8PwynBWe8eG0APNUzyDdPjG7Y34uRg1O1GdXiuflC9fqT7rdaRTwFoEvuObHz4N3jHjqoZQy0/Imagen-de-WhatsApp-2025-02-07-a-las-21.36.18_64ef2f53.jpg",
+    "https://prod-fillout-oregon-s3.s3.us-west-2.amazonaws.com/orgid-93755/flowpublicid-h72USHfGwsus/3755b97f-604f-446e-858d-62c82e2041b0-zmcmhBYL335LgbBUYO3s17rL6ENiXq2JPTZANlyox7I56C1MxN2nvl8HI89qpuzXuPvzMoKzW4yoIIVkP41vI4O8OjwlGmZmF4H/Imagen-de-WhatsApp-2025-02-07-a-las-21.36.19_a832c05c.jpg",
+    "https://prod-fillout-oregon-s3.s3.us-west-2.amazonaws.com/orgid-93755/flowpublicid-h72USHfGwsus/4fad570a-cc53-4581-a803-c2cdbc48a2f5-xzd4xCT9FsZtfgUl32qWSafO29Wz3sObNmlhFSs8OJFx50sJqUlppIuuD845W4kIExrcOKb4C20Z8jtpbVKl3IROJOwOjlc2psI/Imagen-de-WhatsApp-2025-02-07-a-las-21.37.27_326f3337.jpg",
+    "https://prod-fillout-oregon-s3.s3.us-west-2.amazonaws.com/orgid-93755/flowpublicid-h72USHfGwsus/fd70f9f0-a31f-4099-b461-85398c37e1d5-IZgE4tKzZ6UpFuAL8SHWtzhRj5ZIq3nfsje1hYPG1SYPi0Xrzix8veVS5kbvElKYTJRtYw8ThclmRkYhMyoHuYirEgh2bDmxqDn/Imagen-de-WhatsApp-2025-02-07-a-las-21.36.16_e7541a0b.jpg",
+    "https://prod-fillout-oregon-s3.s3.us-west-2.amazonaws.com/orgid-93755/flowpublicid-h72USHfGwsus/ed5b8c12-1ca2-48e0-bd4f-6bc0a3b272ce-FTDtadeP2i7fvjdoibm6lUH3kF0ufxGsQUxPCfyn7mHuDfqk6obFcNQ26TZlnkAUgHF5v1rDaNkNIaIKbd3uVYC6Z4HXhB3igVd/Imagen-de-WhatsApp-2025-02-07-a-las-21.36.19_b6febf78.jpg",
+    "https://prod-fillout-oregon-s3.s3.us-west-2.amazonaws.com/orgid-93755/flowpublicid-h72USHfGwsus/4be441db-008f-4387-868d-4d837fd57656-9z9FygbqQkpBtKnvFGnDzu3G92VmjXcdg64xLhqoaJzJ4PWjgBLG9fuITPxcsvzxNuXsV6JMIgzxcC9hN3HOXVRBphHIK2uvhi7/Imagen-de-WhatsApp-2025-02-07-a-las-21.36.16_c0ae9215.jpg",
+    "https://prod-fillout-oregon-s3.s3.us-west-2.amazonaws.com/orgid-93755/flowpublicid-h72USHfGwsus/e2d3f1f8-5171-4d68-aace-17b241fd46a1-je1rW4PDjWXluGJRjRBJyMLOEB2CPWsP5KBmE2q2Fofx3SedTxfKmLcW9G1E605zuJ95zyOMBLozvtDJqqPhcVlMZNc9Pp7dxNM/Imagen-de-WhatsApp-2025-02-07-a-las-21.36.15_053fca40.jpg",
+    "https://prod-fillout-oregon-s3.s3.us-west-2.amazonaws.com/orgid-93755/flowpublicid-h72USHfGwsus/95960cac-e189-43a0-a10d-f4f961159fb1-CEQKQYzDlf0Mx3c1xusqZXdChp1L3fgnYzmxSug1leQA4grvDEmYDc9HBaPPAUchGebJR67OM5TXHK9NgHGIbbTP2K8ro7HVXiz/Imagen-de-WhatsApp-2025-02-07-a-las-21.36.19_029e1190.jpg",
+    "https://prod-fillout-oregon-s3.s3.us-west-2.amazonaws.com/orgid-93755/flowpublicid-h72USHfGwsus/ff5915a9-dc2b-4234-a593-ce0d52c283eb-RDYLFErMJtQHnbzRWM1GL1A00fUxegAAyZNe7djiboAXAtQlmvKGqiT0kQNbLvnsD8aE4XQ8WKivx9mtXcZLjOhkXr59NkJu5D6/Imagen-de-WhatsApp-2025-02-07-a-las-21.37.25_1398e77d.jpg",
+    "https://prod-fillout-oregon-s3.s3.us-west-2.amazonaws.com/orgid-93755/flowpublicid-h72USHfGwsus/9b0ca60f-4c78-4441-8169-da6b80eb32ce-6xW6EwFzzT2YE2ml6G2JokxQyNgzKSUGEguw7ZDYaHuzNRi1cV0ty8xP9rlMAIq1uQDBcZMYKdGTV2zimiUeZUnFJIWE9ho6859/Imagen-de-WhatsApp-2025-02-07-a-las-21.36.16_ea45391c.jpg",
+    "https://prod-fillout-oregon-s3.s3.us-west-2.amazonaws.com/orgid-93755/flowpublicid-h72USHfGwsus/a77eb60b-8cc3-496e-affb-7c906acf8561-HImF2JShMSyP0Z8j1YjMuIH9I3hdA7dcUAauWtwYo1UrpJAYjNVh7Bp7fzR9ouxqrEaCbg0KPfaB1ATPWGUvMI8Amkks7NWwBr0/Imagen-de-WhatsApp-2025-02-07-a-las-21.36.16_c1e5360a.jpg",
+  ],
+  isFeatured: true,
+  isNewListing: false,
+  mapIframe: '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3952.4041594309915!2d-72.5078601252729!3d7.8527006062921485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e664530e9307a1b%3A0x15ddd99daef3485e!2sCondominio%20Palestina%20Real!5e0!3m2!1ses!2sco!4v1748051852795!5m2!1ses!2sco" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Ubicación de Conjunto Cerrado Palestina Real"></iframe>'
+},
   {
     id: "2",
     title: "Modern Downtown Penthouse",
@@ -83,7 +77,6 @@ const properties: Property[] = [
     bathrooms: 3.5,
     squareFeet: 3200,
     propertyType: "Penthouse",
-    yearBuilt: 2020,
     features: [
       "Panoramic Views",
       "Private Elevator",
@@ -102,13 +95,7 @@ const properties: Property[] = [
     ],
     isFeatured: true,
     isNewListing: true,
-    agent: {
-      id: "a2",
-      name: "Michael Chen",
-      image: "https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg"
-    },
-    latitude: 40.7586,
-    longitude: -73.9792
+ 
   },
   {
     id: "3",
@@ -123,7 +110,6 @@ const properties: Property[] = [
     bathrooms: 7,
     squareFeet: 8500,
     propertyType: "Estate",
-    yearBuilt: 2005,
     features: [
       "Swimming Pool",
       "Tennis Court",
@@ -142,13 +128,8 @@ const properties: Property[] = [
     ],
     isFeatured: true,
     isNewListing: false,
-    agent: {
-      id: "a3",
-      name: "Jessica Martinez",
-      image: "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg"
-    },
-    latitude: 34.0736,
-    longitude: -118.4004
+  
+
   },
   {
     id: "4",
@@ -163,7 +144,6 @@ const properties: Property[] = [
     bathrooms: 2,
     squareFeet: 1800,
     propertyType: "Condo",
-    yearBuilt: 2019,
     features: [
       "Beachfront",
       "Ocean Views",
@@ -182,13 +162,8 @@ const properties: Property[] = [
     ],
     isFeatured: false,
     isNewListing: true,
-    agent: {
-      id: "a4",
-      name: "David Wilson",
-      image: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg"
-    },
-    latitude: 25.7907,
-    longitude: -80.1300
+  
+
   },
   {
     id: "5",
@@ -203,7 +178,6 @@ const properties: Property[] = [
     bathrooms: 3.5,
     squareFeet: 4200,
     propertyType: "Townhouse",
-    yearBuilt: 1880,
     features: [
       "Historic Architecture",
       "Multiple Fireplaces",
@@ -222,13 +196,8 @@ const properties: Property[] = [
     ],
     isFeatured: false,
     isNewListing: false,
-    agent: {
-      id: "a5",
-      name: "Emily Thompson",
-      image: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg"
-    },
-    latitude: 42.3505,
-    longitude: -71.0754
+ 
+
   },
   {
     id: "6",
@@ -243,7 +212,6 @@ const properties: Property[] = [
     bathrooms: 4.5,
     squareFeet: 5000,
     propertyType: "Chalet",
-    yearBuilt: 2015,
     features: [
       "Mountain Views",
       "Stone Fireplace",
@@ -262,13 +230,8 @@ const properties: Property[] = [
     ],
     isFeatured: true,
     isNewListing: true,
-    agent: {
-      id: "a6",
-      name: "Robert Miller",
-      image: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg"
-    },
-    latitude: 39.1911,
-    longitude: -106.8175
+
+
   }
 ];
 

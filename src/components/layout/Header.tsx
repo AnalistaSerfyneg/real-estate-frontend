@@ -89,9 +89,8 @@ const Header: React.FC = () => {
             <Link to="/properties" className="py-3 text-navy-900 border-b border-gray-100" onClick={() => setIsMobileMenuOpen(false)}>
               Propiedades
             </Link>
-            <Link to="/agents" className="py-3 text-navy-900 border-b border-gray-100" onClick={() => setIsMobileMenuOpen(false)}>
-              Agentes
-            </Link>
+        
+          
             <Link to="/contact" className="py-3 text-navy-900" onClick={() => setIsMobileMenuOpen(false)}>
               Contacto
             </Link>

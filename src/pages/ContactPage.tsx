@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 
 const ContactPage: React.FC = () => {
   useEffect(() => {
@@ -26,104 +26,17 @@ const ContactPage: React.FC = () => {
       
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Contact Form */}
+          {/* Embedded Fillout Form */}
           <div className="bg-white rounded-lg shadow-md p-8">
             <h2 className="text-2xl font-semibold text-navy-900 mb-6">Ponte en Contacto</h2>
-            <form className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Nombre*
-                  </label>
-                  <input
-                    type="text"
-                    className="input-field w-full"
-                    placeholder="Tu nombre"
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Apellido*
-                  </label>
-                  <input
-                    type="text"
-                    className="input-field w-full"
-                    placeholder="Tu apellido"
-                    required
-                  />
-                </div>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Correo Electrónico*
-                  </label>
-                  <input
-                    type="email"
-                    className="input-field w-full"
-                    placeholder="Tu correo electrónico"
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Número de Teléfono
-                  </label>
-                  <input
-                    type="tel"
-                    className="input-field w-full"
-                    placeholder="Tu número de teléfono"
-                  />
-                </div>
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Asunto*
-                </label>
-                <select className="input-field w-full" required>
-                  <option value="">Selecciona un asunto</option>
-                  <option value="property-inquiry">Consulta sobre Propiedad</option>
-                  <option value="selling">Vender mi Propiedad</option>
-                  <option value="buying">Comprar una Propiedad</option>
-                  <option value="valuation">Valoración de Propiedad</option>
-                  <option value="other">Otro</option>
-                </select>
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Mensaje*
-                </label>
-                <textarea
-                  className="input-field w-full min-h-[150px]"
-                  placeholder="Tu mensaje"
-                  required
-                ></textarea>
-              </div>
-              
-              <div className="flex items-start">
-                <input
-                  type="checkbox"
-                  id="privacy-policy"
-                  className="mt-1"
-                  required
-                />
-                <label htmlFor="privacy-policy" className="ml-2 text-sm text-gray-600">
-                  He leído y acepto la <a href="#" className="text-navy-600 hover:text-navy-800">Política de Privacidad</a> y consiento que mis datos sean procesados.
-                </label>
-              </div>
-              
-              <button
-                type="submit"
-                className="btn btn-primary px-8 py-3 flex items-center justify-center"
-              >
-                <Send className="w-5 h-5 mr-2" />
-                Enviar Mensaje
-              </button>
-            </form>
+            <div
+              style={{ width: '100%', height: '500px' }}
+              data-fillout-id="jLQuijYVysus"
+              data-fillout-embed-type="standard"
+              data-fillout-inherit-parameters
+              data-fillout-dynamic-resize
+            ></div>
+            <script src="https://server.fillout.com/embed/v1/"></script>
           </div>
           
           {/* Contact Information */}
@@ -185,20 +98,6 @@ const ContactPage: React.FC = () => {
                   </div>
                 </div>
               </div>
-            </div>
-            
-            <div className="bg-white rounded-lg shadow-md p-8">
-              <h2 className="text-2xl font-semibold text-navy-900 mb-6">Ubicación de la Oficina</h2>
-              <div className="bg-gray-200 rounded-lg h-64 mb-4">
-                {/* This would be a map component in a real application */}
-                <div className="flex items-center justify-center h-full">
-                  <MapPin className="w-8 h-8 text-navy-600 mr-2" />
-                  <span className="text-gray-600">Vista de Mapa</span>
-                </div>
-              </div>
-              <p className="text-gray-600">
-                Nuestra oficina está convenientemente ubicada en el corazón de Nueva York, con fácil acceso mediante transporte público y estacionamiento cercano.
-              </p>
             </div>
           </div>
         </div>

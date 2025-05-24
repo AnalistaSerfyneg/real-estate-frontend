@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { MapPin, Bed, Bath, Square, Calendar, ArrowLeft, Check } from 'lucide-react';
+import { MapPin, Bed, Bath, Square, ArrowLeft, Check, ChevronLeft, ChevronRight } from 'lucide-react';
 import properties from '../data/properties';
 import PropertyCard from '../components/properties/PropertyCard';
 
@@ -8,6 +8,7 @@ const PropertyDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [activeImage, setActiveImage] = useState(0);
   const [showAllFeatures, setShowAllFeatures] = useState(false);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true); // Estado para controlar el autoplay
   
   // Find the property with matching id
   const property = properties.find(p => p.id === id);
@@ -30,6 +31,18 @@ const PropertyDetails: React.FC = () => {
     setActiveImage(0);
   }, [property]);
   
+  // Autoplay effect for changing images every 6 seconds
+  useEffect(() => {
+    if (!property || !isAutoPlaying) return;
+
+    const interval = setInterval(() => {
+      setActiveImage(prev => (prev === property.images.length - 1 ? 0 : prev + 1));
+    }, 6000); // 6000 ms = 6 segundos
+
+    // Limpiar el intervalo cuando el componente se desmonte o cambie la propiedad
+    return () => clearInterval(interval);
+  }, [property, isAutoPlaying]);
+  
   // If property not found
   if (!property) {
     return (
@@ -47,6 +60,23 @@ const PropertyDetails: React.FC = () => {
   // Format price with commas
   const formatPrice = (price: number) => {
     return `$${price.toLocaleString('es-CO')}`; // Formato para moneda en español (Colombia)
+  };
+
+  // Handle navigation for previous and next images
+  const handlePrevImage = () => {
+    setIsAutoPlaying(false); // Detener autoplay al interactuar manualmente
+    setActiveImage(prev => (prev === 0 ? property.images.length - 1 : prev - 1));
+  };
+
+  const handleNextImage = () => {
+    setIsAutoPlaying(false); // Detener autoplay al interactuar manualmente
+    setActiveImage(prev => (prev === property.images.length - 1 ? 0 : prev + 1));
+  };
+
+  // Handle thumbnail click
+  const handleThumbnailClick = (index: number) => {
+    setIsAutoPlaying(false); // Detener autoplay al interactuar manualmente
+    setActiveImage(index);
   };
   
   return (
@@ -113,11 +143,30 @@ const PropertyDetails: React.FC = () => {
             {/* Image Gallery */}
             <div className="bg-white rounded-lg shadow-md overflow-hidden mb-8">
               <div className="relative h-[600px]">
-                <img
-                  src={property.images[activeImage]}
-                  alt={`${property.title} - Imagen ${activeImage + 1}`}
-                  className="w-full h-full object-cover"
-                />
+                {property.images.map((image, index) => (
+                  <img
+                    key={index}
+                    src={image}
+                    alt={`${property.title} - Imagen ${index + 1}`}
+                    className="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ease-in-out"
+                    style={{ opacity: index === activeImage ? 1 : 0 }}
+                  />
+                ))}
+                {/* Controles de navegación */}
+                <button
+                  onClick={handlePrevImage}
+                  className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-navy-600 text-white p-2 rounded-full hover:bg-navy-800 transition-colors focus:outline-none"
+                  aria-label="Imagen anterior"
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </button>
+                <button
+                  onClick={handleNextImage}
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-navy-600 text-white p-2 rounded-full hover:bg-navy-800 transition-colors focus:outline-none"
+                  aria-label="Imagen siguiente"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </button>
               </div>
               <div className="p-4 flex space-x-2 overflow-x-auto">
                 {property.images.map((image, index) => (
@@ -126,7 +175,7 @@ const PropertyDetails: React.FC = () => {
                     className={`flex-shrink-0 w-40 h-30 cursor-pointer ${
                       index === activeImage ? 'ring-2 ring-navy-600' : 'opacity-70'
                     }`}
-                    onClick={() => setActiveImage(index)}
+                    onClick={() => handleThumbnailClick(index)}
                   >
                     <img
                       src={image}
@@ -141,7 +190,7 @@ const PropertyDetails: React.FC = () => {
             {/* Property Details */}
             <div className="bg-white rounded-lg shadow-md p-6 mb-8">
               <h2 className="text-xl font-semibold text-navy-900 mb-4">Detalles de la Propiedad</h2>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-6">
+              <div className="flex justify-center gap-8 mb-6">
                 <div className="flex flex-col items-center p-4 bg-gray-50 rounded-lg">
                   <Bed className="w-6 h-6 text-navy-600 mb-2" />
                   <span className="font-bold text-navy-900">{property.bedrooms}</span>
@@ -154,17 +203,14 @@ const PropertyDetails: React.FC = () => {
                 </div>
                 <div className="flex flex-col items-center p-4 bg-gray-50 rounded-lg">
                   <Square className="w-6 h-6 text-navy-600 mb-2" />
-                  <span className="font-bold text-navy-900">{property.squareFeet.toLocaleString('es-CO')}</span>
+                  <span className="font-bold text-navy-900">
+                    {(property.squareFeet / 10.764).toFixed(0)}
+                  </span>
                   <span className="text-sm text-gray-600">Metros Cuadrados</span>
-                </div>
-                <div className="flex flex-col items-center p-4 bg-gray-50 rounded-lg">
-                  <Calendar className="w-6 h-6 text-navy-600 mb-2" />
-                  <span className="font-bold text-navy-900">{property.yearBuilt}</span>
-                  <span className="text-sm text-gray-600">Año de Construcción</span>
                 </div>
               </div>
               <p className="text-gray-700 mb-6">
-                {property.description} {/* Asegúrate de traducir la descripción en el archivo properties si es necesario */}
+                {property.description}
               </p>
               <div className="border-t border-gray-100 pt-6">
                 <h3 className="text-lg font-semibold text-navy-900 mb-4">Características de la Propiedad</h3>
@@ -172,7 +218,7 @@ const PropertyDetails: React.FC = () => {
                   {(showAllFeatures ? property.features : property.features.slice(0, 6)).map((feature, index) => (
                     <div key={index} className="flex items-center">
                       <Check className="w-5 h-5 text-navy-600 mr-2" />
-                      <span>{feature}</span> {/* Traduce las características en el archivo properties si es necesario */}
+                      <span>{feature}</span>
                     </div>
                   ))}
                 </div>
@@ -191,12 +237,26 @@ const PropertyDetails: React.FC = () => {
             <div className="bg-white rounded-lg shadow-md p-6 mb-8">
               <h2 className="text-xl font-semibold text-navy-900 mb-4">Ubicación</h2>
               <div className="aspect-w-16 aspect-h-9 mb-4">
-                <div className="w-full h-64 bg-gray-200 rounded-lg">
-                  <div className="flex items-center justify-center h-full">
-                    <MapPin className="w-8 h-8 text-navy-600 mr-2" />
-                    <span className="text-gray-600">Vista de Mapa</span>
+                {property.mapIframe ? (
+                  <iframe
+                    src={property.mapIframe.match(/src="([^"]+)"/)?.[1]} // Extrae el valor de src del HTML
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title={`Ubicación de ${property.title}`}
+                    className="w-full h-full rounded-lg"
+                  />
+                ) : (
+                  <div className="w-full h-64 bg-gray-200 rounded-lg">
+                    <div className="flex items-center justify-center h-full">
+                      <MapPin className="w-8 h-8 text-navy-600 mr-2" />
+                      <span className="text-gray-600">Vista de Mapa No Disponible</span>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
               <div className="flex items-start">
                 <MapPin className="w-5 h-5 text-navy-600 mt-0.5 mr-2" />
@@ -208,8 +268,6 @@ const PropertyDetails: React.FC = () => {
           </div>
           
           {/* Sidebar */}
-          
-              
         </div>
         
         {/* Similar Properties */}

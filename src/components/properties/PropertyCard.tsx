@@ -62,7 +62,6 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
             </div>
           </div>
           
-          {/* Agent Thumbnail */}
           
         </div>
         
