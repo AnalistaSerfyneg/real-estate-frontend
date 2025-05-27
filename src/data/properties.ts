@@ -66,7 +66,7 @@ const properties: Property[] = [
 },
   {
     id: "14",
-    title: "LOTE # 2 DE LA ZONA DE RESERVA # 3 CAVASA - CORREGIMIENTO EL CARMELO",
+    title: "(ID 14) LOTE # 2 DE LA ZONA DE RESERVA # 3 CAVASA - CORREGIMIENTO EL CARMELO",
     price: 2351675760,
     address: "KM 14 VÍA CALI - CANDELARIA",
     city: "CANDELARIA",
@@ -102,7 +102,7 @@ const properties: Property[] = [
   },
   {
     id: "21",
-    title: "EDIFICIO MULTIFAMILIAR KATARY 3 P.H.",
+    title: "(ID 21) EDIFICIO MULTIFAMILIAR KATARY 3 P.H.",
     price: 429394314,
     address: "CRA 26A # 62-32 APTO 502 GARAJE 11",
     city: "BOGOTÁ",
@@ -141,7 +141,7 @@ const properties: Property[] = [
   },
   {
     id: "22",
-    title: "EDIFICIO TERRA",
+    title: "(ID 22) EDIFICIO TERRA",
     price: 217902281,
     address: "CARRERA 16# 47-76 APTO 401 GARAJE 2 DEPOSITO 5",
     city: "TUNJA",
@@ -179,7 +179,7 @@ const properties: Property[] = [
   },
   {
     id: "24",
-    title: "PORTANOVA PROPIEDAD HORIZONTAL",
+    title: "(ID 24) PORTANOVA PROPIEDAD HORIZONTAL",
     price: 193211315,
     address: "CARRERA 6 # 20-35 APTO 1014 TORRE B",
     city: "PIEDECUESTA",
@@ -219,7 +219,7 @@ const properties: Property[] = [
   },
   {
     id: "28",
-    title: "CONJUNTO RESIDENCIAL LAS AMERICAS",
+    title: "(ID 28) CONJUNTO RESIDENCIAL LAS AMERICAS",
     price: 111461006,
     address: "CASA BIFAMILIAR 12 APTO 112 BARRIO RINCON DE LAS AMERICAS",
     city: "IBAGUE",
