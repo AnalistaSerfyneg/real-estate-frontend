@@ -113,7 +113,7 @@ const TermsService: React.FC = () => {
               <br />
               Correo: soporte@serfyneg.com
               <br />
-              Teléfono: [número de contacto]
+              Teléfono: [601-915 9644 Ext 3003]
             </p>
           </section>
         </div>
