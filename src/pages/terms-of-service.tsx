@@ -53,27 +53,22 @@ const TermsService: React.FC = () => {
           <section className="mb-8">
             <h2 className="text-xl font-semibold text-navy-900 mb-4">3. Servicios ofrecidos</h2>
             <p className="text-gray-700">
-              El Sitio permite buscar, explorar y contactar agentes para la compra, venta o alquiler de propiedades. No garantizamos la exactitud de la información sobre propiedades ni la disponibilidad de las mismas. Los contratos de compraventa o alquiler se realizan directamente entre usuarios y agentes, y Inmuebles Serfyneg no es parte de dichos acuerdos.
+              El Sitio permite buscar, explorar y enviar solicitud de contacto para mayor información sobre el inmueble de interés. Los contratos de compraventa se realizan directamente entre usuarios y el Fondo Nacional del Ahorro, Serfyneg BPO S.A.S no es parte de dichos acuerdos.
             </p>
           </section>
 
           <section className="mb-8">
             <h2 className="text-xl font-semibold text-navy-900 mb-4">4. Propiedad intelectual</h2>
             <p className="text-gray-700">
-              Todo el contenido del Sitio, incluyendo textos, imágenes, logotipos y software, es propiedad de Inmuebles Serfyneg o sus licenciantes y está protegido por leyes de propiedad intelectual. No puedes copiar, modificar o distribuir contenido sin nuestro consentimiento.
+              Todo el contenido del Sitio, incluyendo textos, imágenes, logotipos y software, es propiedad de Serfyneg BPO S.A.S o sus licenciantes y está protegido por leyes de propiedad intelectual. No puedes copiar, modificar o distribuir contenido sin nuestro consentimiento.
             </p>
           </section>
 
           <section className="mb-8">
             <h2 className="text-xl font-semibold text-navy-900 mb-4">5. Limitación de responsabilidad</h2>
             <p className="text-gray-700">
-              El Sitio se proporciona "tal cual". Inmuebles Serfyneg no garantiza que el Sitio esté libre de errores o interrupciones. No somos responsables por:
+              El Sitio se proporciona "tal cual". Inmuebles Serfyneg no garantiza que el Sitio esté libre de errores o interrupciones. No somos responsables por Pérdidas o daños derivados del uso del Sitio.
             </p>
-            <ul className="list-disc list-inside text-gray-700 space-y-2">
-              <li>Errores en la información de propiedades o servicios.</li>
-              <li>Pérdidas o daños derivados del uso del Sitio.</li>
-              <li>Acciones de terceros, como agentes inmobiliarios o usuarios.</li>
-            </ul>
           </section>
 
           <section className="mb-8">
@@ -111,7 +106,7 @@ const TermsService: React.FC = () => {
               <br />
               Inmuebles Serfyneg
               <br />
-              Correo: soporte@serfyneg.com
+              Correo: servicioalcliente@serfyneg.com
               <br />
               Teléfono: [601-915 9644 Ext 3003]
             </p>
